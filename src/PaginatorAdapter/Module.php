@@ -2,17 +2,14 @@
 
 namespace PaginatorAdapter;
 
-use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 
 /**
- * Class Module
- *
  * @author  Benjamin Osoria Peralta <bnmosria@hotmail.com>
  * @package PaginatorAdapter
  */
 class Module implements ConfigProviderInterface
 {
-
     /**
      * {@inheritDoc}
      */

@@ -2,16 +2,15 @@
 
 namespace PaginatorAdapter\Adapter;
 
+use ArrayIterator;
 use Doctrine\ORM\Tools\Pagination\Paginator;
-use Zend\Paginator\Adapter\AdapterInterface;
+use Exception;
 
 /**
- * Class PaginatorAdapter
- *
  * @author  Benjamin Osoria Peralta <bnmosria@hotmail.com>
  * @package PaginatorAdapter\Adapter
  */
-class PaginatorAdapter implements AdapterInterface
+class PaginatorAdapter implements PaginatorAdapterInterface
 {
     /**
      * @var Paginator
@@ -27,27 +26,24 @@ class PaginatorAdapter implements AdapterInterface
      * @param int $offset
      * @param int $itemCountPerPage
      *
-     * @return \ArrayIterator
+     * @return ArrayIterator
+     * @throws Exception
      */
-    public function getItems($offset, $itemCountPerPage): \ArrayIterator
-    {
+    public function getItems(
+        $offset,
+        $itemCountPerPage
+    ): ArrayIterator {
         return $this->paginator->getIterator();
     }
 
-    /**
-     * @return int
-     */
     public function count(): int
     {
         return $this->count;
     }
 
-    /**
-     * @param Paginator $paginator
-     */
     public function setPaginator(Paginator $paginator): void
     {
         $this->paginator = $paginator;
-        $this->count = count($paginator);
+        $this->count = count($paginator ?? []);
     }
 }
